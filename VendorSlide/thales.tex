@@ -11,48 +11,67 @@
    
 }
 
+\frame
+{
+  \frametitle{Thales System architecture Loop Inductive Version}
+ \begin{center}
+	\includegraphics[scale=0.25]{./fig/SeltracTBTCArchitetture}
+      \end{center}
+      {\tiny  SMC is Supervisory Control Level, VCC is Vehicle Control Computer, SCS is Station Controller Systems}
+   
+}
+
+\frame
+{
+  \frametitle{Thales System architecture Radio Frequency Version}
+ \begin{center}
+	\includegraphics[scale=0.45]{./fig/SeltracRFArchitetture}
+      \end{center}
+      
+   
+}
+
 \subsection{Operating mode, Safety and failure management}
 \frame
 {
 \begin{block}<1->{Operating mode management}
-replacing or overlay existing signalling
+Replacing or overlay existing signalling
 \end{block}
 \begin{alertblock}<2->{Safety and failure management}
-\begin{itemize}
-\item \textbf{Full secondary signalling system using the conventional track circuits, interlockings and wayside signals}. 
-
-The solution is based on the Bombardier EBI Lock 950 Computer Based Interlocking (CBI).
-\item CITYFLO systems allow a \textbf{cold start-up}
-\end{itemize}
-
- 
+Seltrac S40 uses fully redundant computer systems 
 
    \end{alertblock}
 }
 
 
-\subsection{Communication and Interlocking}
+\subsection{Communication infrastructure and protocol }
 \frame
 {
   
 \begin{block}<1->{Communication infrastructure and protocol}
 \begin{itemize}
-\item The RF communication uses either a leaky coaxial cable or Line of Sight (LOS) antenna network along the wayside that transmits data to the trains via their onboard mobile antennas.
-\item The train has also an internal communication network, which uses the IEEE-1473 protocol.
+\item IL \begin{itemize}
+\item Train-wayside protocol is Proprietary.  VOBC antennas to receive data at 36 kHz and to transmit data at 56 kHz.  The protocol used in Alcatel's loop communication has the VCC transmitting an 83-bit telegram to the VOBC at 1200 baud; the VOBC responds with a 43 bit telegram at 600 baud.  
+
 \end{itemize}
+
+\item RF \begin{itemize}
+\item system are fully redundant.
+\item Train-wayside protocol : IEEE 802.11
+\item On Board Communication sub-system has two antennas, one on the front, and one on the rear of the train. Each onboard network device connected to the antenna is a modular component, with two IEEE 802.3 interfaces, as well as one CAN bus interface.
+\end{itemize}
+
+
+\end{itemize}
+
+     
+
+
+
+
 \end{block}
 
-\begin{block}<2->{Interlocking and wayside information integration}
-\begin{itemize}
-\item The CITYFLO 650 built-in interlocking function is \textbf{located with the regional wayside ATP}.
 
-
-\item The CITYFLO 650 solution can either use the \textbf{built-in interlocking function or add optional EBI Lock computer-based interlocking for fall-back system capability} or adherence to local norms. 
-\end{itemize}
-
-
-
-   \end{block}
 }
 
 %System architecture
@@ -65,17 +84,20 @@ The solution is based on the Bombardier EBI Lock 950 Computer Based Interlocking
 \frame
 {
 
+\begin{block}<1->{Interlocking and wayside information integration}
+The interlocking functions are provided by LockTrac 6131 ELEKTRA is an electronic interlocking system that provides the highest levels of safety and availability.
+
+
+   \end{block}
   
-\begin{block}<1->{ATS functions}
+\begin{block}<2->{ATS functions}
 \begin{itemize}
-\item Manual override requests {\footnotesize  (when the central operator substitutes the automatic system ATP or ATO)}
-\item Management initiation and termination of service
-\item Management of train schedules including dwell and headway control
-\item Management of route assignments for normal operations and failure modes 
-\item Train management (including skip station or station close) 
-\item Remote set or reset of emergency brakes
-\item Voice communication with the train and supervision
-\item Control of any power distribution system (SCADA)
+\item Train departure, destination assignments and identification assignment.
+\item Train routing functions.
+\item Modification of the system operations parameters in response to system delays and Control Room commands.
+\item Data logging.
+\item Station platform information display (PID) control
+\item Station platform announce
 \end{itemize}
 \end{block}
 }
@@ -83,67 +105,61 @@ The solution is based on the Bombardier EBI Lock 950 Computer Based Interlocking
 
 %ATS functions
 
-\subsection{Headway, Train speed and train location determination }
+\subsection{Headway,  }
 \frame
 {
   
 
-\begin{block}<1->{Headway}
+\begin{block}<1->{Headway and Braking model}
 \begin{itemize}
-\item {\scriptsize CITYFLO 650} is capable of less than 75 second headway
-\item  \textmd{Metro Madrid Line} 1\&6: 101s/111s headway
+\item SelTrac has proven that it can deliver headways of under 60s. 
+\item In Dubai Metro is configured for a minimum headway of 90s.
+
  
 \end{itemize}
 
    \end{block}
    
    \begin{block}<2->{Braking models and speed limit protection}
-No Information
+The system allows four service brake rates ranging from 0.4$ms^{-2}$ to 0.8$ms^{-2}$.  
+
+The brake rate for a specific train or track section can be adjusted manually from the control center.
+
+Safety calculations are based on an emergency brake rate of 0.9$ms^{-2}$
 
    \end{block}
    
-      \begin{block}<3->{Train speed and train location determination}
-      \begin{itemize}
-       \item Tracks divided into entity called a ``{\scriptsize CITYFLO Segment}'' .  
-
-For \textbf{example} suppose that a train was 25\% through segment \textbf{R}1\textbf{S}4 in “Moving Block Coordinate System” is \textbf{R}egion 1, \textbf{S}egment 4, and Offset 25.
-
-\item A Norming Point is a {\small \textbf{Passive Tag containing Location Data}.
-}\item A \textbf{Conflict Point} is defined as the end of movement authority.
-\item Neihu-Muzha Line \textbf{maximum speed of 80 km/h}
-\end{itemize}
-
-
-
-   \end{block}
-}
+     }
 
 %Headway
 %Braking models and speed limit protection
 %Train speed and train location determination
 
-\subsection{Door management, ATO functions and Service-oriented facilities}
+\subsection{Train speed, train location determination,Door management, ATO functions}
 \frame
 {
-  
+   \begin{block}<1->{Train speed and train location determination}
+      \begin{itemize}
+       \item With IL for speed determination use a tacho-generators, used to measure speed, direction and distance in conjunction with an accelerometer. SELTRAC train position detection system provides a 6.25 meter resolution.
 
-\begin{block}<1->{Door management}
-\begin{itemize}
-\item Door control requests are issued by the ATO system (both onboard and wayside). 
-\item  The ATO system allows precision stopping by the train at stations with a typical accuracy of +/- 15 cm 
+\item With radio-based the system use the trackside transponder tags assist in train positioning
+
+\item Maximum speed of the trains will be 90 km/h.
+
 \end{itemize}
+
+
+
+   \end{block}
+
+
+\begin{block}<2->{Door management}
+No Information
 
    \end{block}
    
-   \begin{block}<2->{ATO functions}
-   \begin{itemize}
-\item  Each Region has an independent ATO.
-\item Ride Comfort Control, e.g. jerk limiting (VATO)
-\item Stopping accuracy (VATO?
-\item Speed profile (VATO)
-\item Door Control Requests (RATO and VATO)
-\item Onboard  and Wayside PIDs and PA (VATO and RATO)
-\end{itemize}
+   \begin{block}<3->{ATO functions}
+  Control train movement with regard to speed, acceleration, deceleration, and jerk.
    \end{block}
    
    }
@@ -159,10 +175,14 @@ For \textbf{example} suppose that a train was 25\% through segment \textbf{R}1\t
       \begin{block}<1->{Service-oriented facilities}
       \begin{itemize}
        \item Passenger information displays (PIDs)
-  \item CCTV (Closed Circuit TV)
-  \item Public announcement (PA)
-  \item Radio
-  \item Telecoms
+\item CCTV surveillance
+\item Public announcement (PA)
+\item Audio and video recording
+\item Phone system and emergency
+\item Advertising information system audio / video
+\item Supervisory Control and Data Acquisition (SCADA) 
+\item Emergency call points allow direct communication with passengers from centralised Operational control centre.
+\item Access control: used to detect and warn in the event of unauthorised access to particular areas of the network
 \end{itemize}
 
 
