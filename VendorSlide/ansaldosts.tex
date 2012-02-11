@@ -6,59 +6,64 @@
 {
   \frametitle{Ansaldo STS System architecture}
  \begin{center}
-	\includegraphics[scale=0.5]{./fig/AnsaldoSPsystem}
+	\includegraphics[scale=0.4]{./fig/AnsaldoSPsystem}
       \end{center}
    
 }
 
-\subsection{Operating mode, Safety and failure management}
+\subsection{Operating mode, Headway and Communication}
 \frame
 {
 \begin{block}<1->{Operating mode management}
-
+simultaneous CBTC and non-CBTC equipped vehicles to share the same tracks
 \end{block}
-\begin{alertblock}<2->{Safety and failure management}
-\begin{itemize}
-\item \textbf{Full secondary signalling system using the conventional track circuits, interlockings and wayside signals}. 
 
-The solution is based on the Bombardier EBI Lock 950 Computer Based Interlocking (CBI).
-\item CITYFLO systems allow a \textbf{cold start-up}
+\begin{block}<2->{Communication infrastructure and protocol}
+\begin{itemize}
+\item  Train-wayside protocol Radio Frequency: IEEE 802.11 
+\item  Fully redundant configurations.
+\end{itemize}
+\end{block}
+\begin{block}<3->{Headway}
+\begin{itemize}
+\item In brochures headway is declared down to 60 seconds.\item Copenhagen Metro  90s/100s minimum.
+\item  Taipei Circular Line 90s minimum.
 \end{itemize}
 
- 
+   \end{block}
 
-   \end{alertblock}
 }
 
 
-\subsection{Communication and Interlocking}
+\subsection{Safety and failure management}
 \frame
 {
-  
-\begin{block}<1->{Communication infrastructure and protocol}
-\begin{itemize}
-\item The RF communication uses either a leaky coaxial cable or Line of Sight (LOS) antenna network along the wayside that transmits data to the trains via their onboard mobile antennas.
-\item The train has also an internal communication network, which uses the IEEE-1473 protocol.
-\end{itemize}
-\end{block}
-
-\begin{block}<2->{Interlocking and wayside information integration}
-\begin{itemize}
-\item The CITYFLO 650 built-in interlocking function is \textbf{located with the regional wayside ATP}.
+\frametitle{Safety and failure management}
+ \begin{center}
+	\includegraphics[scale=0.20]{./fig/AnsaldoUnequiped}
+      \end{center} 
 
 
-\item The CITYFLO 650 solution can either use the \textbf{built-in interlocking function or add optional EBI Lock computer-based interlocking for fall-back system capability} or adherence to local norms. 
-\end{itemize}
-
-
-
-   \end{block}
 }
 
 %System architecture
 %Operating mode management
 %Safety and failure management
 %Communication infrastructure and protocol
+\subsection{Interlocking}
+\frame
+{
+\frametitle{Interlocking and wayside information integration}
+
+
+
+ \begin{center}
+	\includegraphics[scale=0.20]{./fig/AnsaldoInterloking}
+      \end{center} 
+
+
+  }
+
 %Interlocking and wayside information integration
 
 \subsection{ATS functions}
@@ -67,56 +72,36 @@ The solution is based on the Bombardier EBI Lock 950 Computer Based Interlocking
 
   
 \begin{block}<1->{ATS functions}
-\begin{itemize}
-\item Manual override requests {\footnotesize  (when the central operator substitutes the automatic system ATP or ATO)}
-\item Management initiation and termination of service
-\item Management of train schedules including dwell and headway control
-\item Management of route assignments for normal operations and failure modes 
-\item Train management (including skip station or station close) 
-\item Remote set or reset of emergency brakes
-\item Voice communication with the train and supervision
-\item Control of any power distribution system (SCADA)
-\end{itemize}
+No Information
 \end{block}
+   \begin{block}<1->{Braking models and speed limit protection}
+No Information
+
+   \end{block}
+   
+      \begin{block}<2->{Train speed and train location determination}
+      \begin{itemize}
+      \item The position train is determinate with use track side beacon to receive the absolute position and on board odometer system 
+      \item The maximum train speed is 80km/h into Copenhagen and Chengdu.\end{itemize}
+  \end{block}
 }
 
 
 %ATS functions
 
-\subsection{Headway, Train speed and train location determination }
-\frame
-{
+%\subsection{ Train speed and train location determination }
+%\frame
+%{
   
 
-\begin{block}<1->{Headway}
-\begin{itemize}
-\item {\scriptsize CITYFLO 650} is capable of less than 75 second headway
-\item  \textmd{Metro Madrid Line} 1\&6: 101s/111s headway
+
+   
+
+
+
+
  
-\end{itemize}
-
-   \end{block}
-   
-   \begin{block}<2->{Braking models and speed limit protection}
-No Information
-
-   \end{block}
-   
-      \begin{block}<3->{Train speed and train location determination}
-      \begin{itemize}
-       \item Tracks divided into entity called a ``{\scriptsize CITYFLO Segment}'' .  
-
-For \textbf{example} suppose that a train was 25\% through segment \textbf{R}1\textbf{S}4 in “Moving Block Coordinate System” is \textbf{R}egion 1, \textbf{S}egment 4, and Offset 25.
-
-\item A Norming Point is a {\small \textbf{Passive Tag containing Location Data}.
-}\item A \textbf{Conflict Point} is defined as the end of movement authority.
-\item Neihu-Muzha Line \textbf{maximum speed of 80 km/h}
-\end{itemize}
-
-
-
-   \end{block}
-}
+%}
 
 %Headway
 %Braking models and speed limit protection
@@ -129,20 +114,14 @@ For \textbf{example} suppose that a train was 25\% through segment \textbf{R}1\t
 
 \begin{block}<1->{Door management}
 \begin{itemize}
-\item Door control requests are issued by the ATO system (both onboard and wayside). 
-\item  The ATO system allows precision stopping by the train at stations with a typical accuracy of +/- 15 cm 
+\item Door control functions is assigned at ATP, if opening authorization is true.\item The ATO functions allows you to make small movements to center doors (Undershoot \& Overshoot recovery)
 \end{itemize}
 
    \end{block}
    
    \begin{block}<2->{ATO functions}
    \begin{itemize}
-\item  Each Region has an independent ATO.
-\item Ride Comfort Control, e.g. jerk limiting (VATO)
-\item Stopping accuracy (VATO?
-\item Speed profile (VATO)
-\item Door Control Requests (RATO and VATO)
-\item Onboard  and Wayside PIDs and PA (VATO and RATO)
+\item Speed regulation\item Management of programmed stops\item Management of Platform Screen doors\item Skip Stop\item Management of overshoot ad undershoot\item Automated coupling \& decoupling\item Energy consumption management and optimization%\item Routine maintenance reporting can be provided direct to the interlocking technician terminal.
 \end{itemize}
    \end{block}
    
@@ -158,11 +137,7 @@ For \textbf{example} suppose that a train was 25\% through segment \textbf{R}1\t
    
       \begin{block}<1->{Service-oriented facilities}
       \begin{itemize}
-       \item Passenger information displays (PIDs)
-  \item CCTV (Closed Circuit TV)
-  \item Public announcement (PA)
-  \item Radio
-  \item Telecoms
+       \item Closed Circuit TV.\item Obstacle detection system\item Loudspeakers in stations and trains.\item Information displays in stations and trains.\item Emergency Call Points in stations and trains.
 \end{itemize}
 
 
